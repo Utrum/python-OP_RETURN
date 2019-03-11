@@ -43,7 +43,7 @@ if OP_RETURN_BITCOIN_USE_CMD:
 	OP_RETURN_BITCOIN_PATH='/usr/bin/bitcoin-cli' # path to bitcoin-cli executable on this server
 	
 else:
-	OP_RETURN_BITCOIN_PORT='' # leave empty to use default port for mainnet/testnet
+	OP_RETURN_BITCOIN_PORT='12467' # leave empty to use default port for mainnet/testnet
 	OP_RETURN_BITCOIN_USER='' # leave empty to read from ~/.bitcoin/bitcoin.conf (Unix only)
 	OP_RETURN_BITCOIN_PASSWORD='' # leave empty to read from ~/.bitcoin/bitcoin.conf (Unix only)
 	
@@ -613,11 +613,14 @@ def OP_RETURN_unpack_block(binary):
 	block['version']=buffer.shift_unpack(4, '<L')
 	block['hashPrevBlock']=OP_RETURN_bin_to_hex(buffer.shift(32)[::-1])
 	block['hashMerkleRoot']=OP_RETURN_bin_to_hex(buffer.shift(32)[::-1])
+	block['finalSaplingRoot']=OP_RETURN_bin_to_hex(buffer.shift(32)[::-1])
 	block['time']=buffer.shift_unpack(4, '<L')
 	block['bits']=buffer.shift_unpack(4, '<L')
-	block['nonce']=buffer.shift_unpack(4, '<L')
+	block['nonce']=OP_RETURN_bin_to_hex(buffer.shift(32)[::-1])
+	block['solutionSize'] = buffer.shift_unpack(3, '3s')
+	block['solution']=OP_RETURN_bin_to_hex(buffer.shift(1344)[::-1])
 	block['tx_count']=buffer.shift_varint()
-	
+
 	block['txs']={}
 	
 	old_ptr=buffer.used()
