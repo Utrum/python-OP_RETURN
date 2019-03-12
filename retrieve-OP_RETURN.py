@@ -41,6 +41,7 @@ else:
 	testnet=False
 
 results=OP_RETURN_retrieve(ref, 1, testnet)
+print(results)
 
 if 'error' in results:
 	print('Error: '+results['error'])
@@ -48,7 +49,7 @@ if 'error' in results:
 elif len(results):
 	for result in results:
 		print("Hex: ("+str(len(result['data']))+" bytes)\n"+OP_RETURN_bin_to_hex(result['data'])+"\n")
-		print("ASCII:\n"+re.sub(b'[^\x20-\x7E]', b'?', result['data']).decode('utf-8')+"\n")
+		print("ASCII:\n" + result['data'].decode('utf-8')+"\n")
 		print("TxID(s): (count "+str(len(result['txids']))+")\n"+"\n".join(result['txids'])+"\n")
 		print("Height(s):"+("\n"+("\n".join(map(str, result['heights'])))+"\n").replace("\n0\n", "\n[mempool]\n"))
 		
