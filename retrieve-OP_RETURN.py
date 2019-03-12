@@ -41,7 +41,6 @@ else:
 	testnet=False
 
 results=OP_RETURN_retrieve(ref, 1, testnet)
-print(results)
 
 if 'error' in results:
 	print('Error: '+results['error'])
