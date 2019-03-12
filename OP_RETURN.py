@@ -43,7 +43,7 @@ if OP_RETURN_BITCOIN_USE_CMD:
 	OP_RETURN_BITCOIN_PATH='/usr/bin/bitcoin-cli' # path to bitcoin-cli executable on this server
 	
 else:
-	OP_RETURN_BITCOIN_PORT='12467' # leave empty to use default port for mainnet/testnet
+	OP_RETURN_BITCOIN_PORT='' # leave empty to use default port for mainnet/testnet
 	OP_RETURN_BITCOIN_USER='' # leave empty to read from ~/.bitcoin/bitcoin.conf (Unix only)
 	OP_RETURN_BITCOIN_PASSWORD='' # leave empty to read from ~/.bitcoin/bitcoin.conf (Unix only)
 	
@@ -56,6 +56,9 @@ OP_RETURN_MAX_BLOCKS=10 # maximum number of blocks to try when retrieving data
 OP_RETURN_NET_TIMEOUT=10 # how long to time out (in seconds) when communicating with bitcoin node
 
 SAT = 100000000 # coin divisible by how many satoshis
+
+from user_defined import *
+
 
 # User-facing functions
 
