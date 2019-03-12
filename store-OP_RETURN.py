@@ -49,5 +49,5 @@ result=OP_RETURN_store(data, testnet)
 if 'error' in result:
 	print('Error: '+result['error'])
 else:
-	print("TxIDs:\n"+"\n".join(result['txids'])+"\n\nRef: "+result['ref']+"\n\nWait a few seconds then check on: http://"+
+	print("TxID(s):\n"+"\n".join(result['txids'])+"\n\nRef: "+result['ref']+"\n\nWait a few seconds then check on: http://"+
 		('testnet.' if testnet else '')+'coinsecrets.org/')
