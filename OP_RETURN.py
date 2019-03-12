@@ -57,6 +57,8 @@ OP_RETURN_NET_TIMEOUT=10 # how long to time out (in seconds) when communicating 
 
 SAT = 100000000 # coin divisible by how many satoshis
 
+CHANGE_ADDR = None # default to "None" to use a different change address every time
+
 # you can override the avobe settings by defining these constants at "user_defined.py" config file
 from user_defined import *
 
@@ -97,7 +99,7 @@ def OP_RETURN_send(send_address, send_amount, metadata, testnet=False):
 
 	# Build the raw transaction
 		
-	change_address=OP_RETURN_bitcoin_cmd('getrawchangeaddress', testnet)
+	change_address = CHANGE_ADDR or OP_RETURN_bitcoin_cmd('getrawchangeaddress', testnet)
 	
 	outputs={send_address: send_amount}
 	
@@ -128,7 +130,7 @@ def OP_RETURN_store(data, testnet=False):
 	if data_len==0:
 		return {'error': 'Some data is required to be stored'}
 
-	change_address=OP_RETURN_bitcoin_cmd('getrawchangeaddress', testnet)
+	change_address = CHANGE_ADDR or OP_RETURN_bitcoin_cmd('getrawchangeaddress', testnet)
 	
 	# Calculate amounts and choose first inputs to use
 
