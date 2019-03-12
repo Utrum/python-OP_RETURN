@@ -57,6 +57,7 @@ OP_RETURN_NET_TIMEOUT=10 # how long to time out (in seconds) when communicating 
 
 SAT = 100000000 # coin divisible by how many satoshis
 
+# you can override the avobe settings by defining these constants at "user_defined.py" config file
 from user_defined import *
 
 
