@@ -49,8 +49,8 @@ elif len(results):
 	for result in results:
 		print("Hex: ("+str(len(result['data']))+" bytes)\n"+OP_RETURN_bin_to_hex(result['data'])+"\n")
 		print("ASCII:\n"+re.sub(b'[^\x20-\x7E]', b'?', result['data']).decode('utf-8')+"\n")
-		print("TxIDs: (count "+str(len(result['txids']))+")\n"+"\n".join(result['txids'])+"\n")
-		print("Blocks:"+("\n"+("\n".join(map(str, result['heights'])))+"\n").replace("\n0\n", "\n[mempool]\n"))
+		print("TxID(s): (count "+str(len(result['txids']))+")\n"+"\n".join(result['txids'])+"\n")
+		print("Height(s):"+("\n"+("\n".join(map(str, result['heights'])))+"\n").replace("\n0\n", "\n[mempool]\n"))
 		
 		if 'ref' in result:
 			print("Best ref:\n"+result['ref']+"\n")
