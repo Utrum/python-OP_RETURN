@@ -1,0 +1,11 @@
+#!/bin/bash
+
+CHANGE_ADDR=RNFAcm18jLKHCm7jUUKnviHWL285q6d2mC
+DAEMON_CONF=$HOME/.komodo/OOT/OOT.conf
+
+
+docker run --rm -ti --name opreturn \
+  --mount "type=bind,src=$DAEMON_CONF,dst=/home/gunicorn/.bitcoin/bitcoin.conf" \
+  -e CHANGE_ADDR=$CHANGE_ADDR \
+  --net host utrum/op_return
+
