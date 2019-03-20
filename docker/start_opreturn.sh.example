@@ -2,11 +2,12 @@
 
 CHANGE_ADDR=RNFAcm18jLKHCm7jUUKnviHWL285q6d2mC
 DAEMON_CONF=$HOME/.komodo/OOT/OOT.conf
-POST_AUTHORIZED_IP=127.0.0.1
+# python array with ip's that are authorized to make POST requests
+POST_AUTHORIZED_IPS='["127.0.0.1", "127.0.0.2"]'
 
 docker run --rm -ti --name opreturn \
   --mount "type=bind,src=$DAEMON_CONF,dst=/home/gunicorn/.bitcoin/bitcoin.conf" \
   -e CHANGE_ADDR=$CHANGE_ADDR \
-  -e POST_AUTHORIZED_IP=$POST_AUTHORIZED_IP \
+  -e POST_AUTHORIZED_IPS=$POST_AUTHORIZED_IPS \
   --net host utrum/op_return
 

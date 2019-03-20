@@ -8,7 +8,7 @@ import json
 
 
 # user configuration
-POST_AUTHORIZED_IP = ''
+POST_AUTHORIZED_IPS = ['127.0.0.1']
 
 from user_defined import *
 # end of configuration area
@@ -38,9 +38,11 @@ class Blockchain(Resource):
 
 class BlockchainStore(Resource):
     def post(self):
-        auth_ip = POST_AUTHORIZED_IP or '127.0.0.1'
-        remote_ip = request.remote_addr
-        if (remote_ip != auth_ip) or (remote_ip != '127.0.0.1'):
+        authorized = False
+        for ip in POST_AUTHORIZED_IPS:
+            if ip == request.remote_addr:
+                authorized = True
+        if authorized == False:
             abort(403)
         json_data = request.get_json()
         result = OP_RETURN_store(json.dumps(json_data))
