@@ -8,6 +8,6 @@ POST_AUTHORIZED_IPS='["127.0.0.1", "127.0.0.2"]'
 docker run --rm -ti --name opreturn \
   --mount "type=bind,src=$DAEMON_CONF,dst=/home/gunicorn/.bitcoin/bitcoin.conf" \
   -e CHANGE_ADDR=$CHANGE_ADDR \
-  -e POST_AUTHORIZED_IPS=$POST_AUTHORIZED_IPS \
+  -e POST_AUTHORIZED_IPS="$POST_AUTHORIZED_IPS" \
   --net host utrum/op_return
 
