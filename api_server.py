@@ -1,10 +1,18 @@
 #!/usr/bin/env python3
-from flask import Flask, request
+from flask import Flask, request, abort
 from flask_restful import Resource, Api
 from flask_restful.reqparse import RequestParser
 from OP_RETURN import *
 import re
 import json
+
+
+# user configuration
+POST_AUTHORIZED_IP = ''
+
+from user_defined import *
+# end of configuration area
+
 
 app = Flask(__name__)
 api = Api(app, prefix="/api/v1")
@@ -30,6 +38,10 @@ class Blockchain(Resource):
 
 class BlockchainStore(Resource):
     def post(self):
+        auth_ip = POST_AUTHORIZED_IP or '127.0.0.1'
+        remote_ip = request.remote_addr
+        if (remote_ip != auth_ip) or (remote_ip != '127.0.0.1'):
+            abort(403)
         json_data = request.get_json()
         result = OP_RETURN_store(json.dumps(json_data))
         return(result)
