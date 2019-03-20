@@ -2,9 +2,11 @@ FROM ubuntu:16.04
 
 RUN apt update && apt install -y git python3-pip
 
-RUN git clone https://github.com/Utrum/python-OP_RETURN.git
-
 RUN pip3 install gunicorn flask flask_restful
+
+LABEL build="190320c"
+
+RUN git clone https://github.com/Utrum/python-OP_RETURN.git
 
 RUN mkdir /conf \
     && mv /python-OP_RETURN/user_defined.py.example \

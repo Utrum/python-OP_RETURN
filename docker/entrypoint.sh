@@ -8,6 +8,12 @@ if [[ -v CHANGE_ADDR ]] ; then
     echo "CHANGE_ADDR = '$CHANGE_ADDR'" >>user_defined.py
 fi
 
+# this enables an alternative method for setting an
+# authorized ip that will make POST requests
+if [[ -v POST_AUTHORIZED_IP ]] ; then
+    echo "POST_AUTHORIZED_IP = '$POST_AUTHORIZED_IP'" >>user_defined.py
+fi
+
 # this enables configuration through mounted dir
 # (overrides settings above)
 cp /conf/user_defined.py . >/dev/null 2>&1
