@@ -11,7 +11,7 @@ fi
 # this enables an alternative method for setting an
 # authorized ip that will make POST requests
 if [[ -v POST_AUTHORIZED_IPS ]] ; then
-    echo "POST_AUTHORIZED_IPS = '$POST_AUTHORIZED_IPS'" >>user_defined.py
+    echo "POST_AUTHORIZED_IPS = $POST_AUTHORIZED_IPS" >>user_defined.py
 fi
 
 # this enables configuration through mounted dir
