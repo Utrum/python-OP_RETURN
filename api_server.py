@@ -45,7 +45,8 @@ class BlockchainStore(Resource):
         if authorized == False:
             abort(403)
         json_data = request.get_json()
-        result = OP_RETURN_store(json.dumps(json_data))
+        result = OP_RETURN_store(
+            json.dumps(json_data, separators=(',', ':')))
         return(result)
 
 
